@@ -1,0 +1,70 @@
+//retornar maiores de 18 anos que podem ver o filme
+function ofAge(arr, predicate) {
+  newArray = [];
+  for (element of arr) {
+    if (predicate(element)) {
+      newArray.push(element);
+    }
+  }
+  return newArray;
+}
+const people = [
+  { name: "Angelina Jolie", age: 80 },
+  { name: "Eric Jones", age: 2 },
+  { name: "Paris Hilton", age: 5 },
+  { name: "Kayne West", age: 16 },
+  { name: "Bob Ziroll", age: 100 },
+];
+ofAge(people, (element) => element.age >= 18);
+
+//dizer quantos voters por faixa etaria e quantos realmente votaram
+var votes = [
+  { name: "Bob", age: 30, voted: true },
+  { name: "Jake", age: 32, voted: true },
+  { name: "Kate", age: 25, voted: false },
+  { name: "Sam", age: 20, voted: false },
+  { name: "Phil", age: 21, voted: true },
+  { name: "Ed", age: 55, voted: true },
+  { name: "Tami", age: 54, voted: true },
+  { name: "Mary", age: 31, voted: false },
+  { name: "Becky", age: 43, voted: false },
+  { name: "Joey", age: 41, voted: true },
+  { name: "Jeff", age: 30, voted: true },
+  { name: "Zack", age: 19, voted: false },
+];
+
+console.log(
+  "Total of young people: " +
+    votes.filter((current) => current.age >= 18 && current.age <= 25).length
+);
+console.log(
+  "Young people who volted: " +
+    votes.filter(
+      (current) =>
+        current.age >= 18 && current.age <= 25 && current.voted == true
+    ).length
+);
+console.log(
+  "Total of mid people: " +
+    votes.filter((current) => current.age >= 26 && current.age <= 35).length
+);
+console.log(
+  "Mid people who volted: " +
+    votes.filter(
+      (current) =>
+        current.age >= 26 && current.age <= 35 && current.voted == true
+    ).length
+);
+console.log(
+  "Total of old people: " +
+    votes.filter((current) => current.age >= 36 && current.age <= 55).length
+);
+console.log(
+  "Old people who volted: " +
+    votes.filter(
+      (current) =>
+        current.age >= 36 && current.age <= 55 && current.voted == true
+    ).length
+);
+
+//criar uma calculadora
