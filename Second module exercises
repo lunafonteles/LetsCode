@@ -68,3 +68,52 @@ console.log(
 );
 
 //criar uma calculadora
+let operacao;
+let result;
+let enter = false;
+list = [];
+
+function calculator(callBackFn, enter) {
+  while (enter == true) {
+    list.push({
+      operacao: operacao,
+      resultado: callBackFn,
+    });
+    return callBackFn;
+  }
+}
+
+function operation(op, num, num2) {
+  if (op == "soma") {
+    operacao = num + " + " + num2;
+    return num + num2;
+  }
+  if (op == "subtracao") {
+    operacao = num + " - " + num2;
+    return num - num2;
+  }
+  if (op == "multiplicacao") {
+    operacao = num + " * " + num2;
+    return num * num2;
+  }
+  if (op == "divisao") {
+    operacao = num + " / " + num2;
+    return num / num2;
+  }
+}
+
+const reset = () => {
+  list = [];
+};
+
+console.log(calculator(operation("soma", 5, 4), true));
+
+console.log(calculator(operation("subtracao", 5, 4), true));
+
+console.log(calculator(operation("multiplicacao", 5, 4), true));
+
+console.log(calculator(operation("divisao", 5, 4), true));
+
+console.log(list);
+reset();
+console.log(list);
