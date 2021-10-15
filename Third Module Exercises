@@ -1,0 +1,45 @@
+//quebrado, ajeitar
+class Person {
+  constructor (firstName, lastName, age, gender, interests) {
+    this.name=firstName+" "+lastName;
+    this.firstName=firstName;
+    this.lastName=lastName;
+    this.age=age;
+    this.gender=gender;
+    this.interests=interests; //array de strings
+  }
+bio = () => {return this.name + "  is " + this.age +" years old. They like " + this.interests};
+greeting=() => {return "Hi, I am " + this.name};
+}
+
+class Teacher {
+  constructor (subject){
+    this.subject=subject;
+  }
+  super(firstName, lastName, age, gender, interests);
+
+greeting=() => {return "Hello, my name is " + this.lastName + ", and I teach " + subject};
+  
+}
+class Student {
+  
+  greeting=() => {return "Yo! I am " + this.firstName};
+
+}
+
+let luna = new Student(firstName="Luna",
+  lastName="Fonteles",
+  age=30,
+  gender="Feminino",
+  interests="backEnd");
+
+luna.greeting();
+
+let lucas = new Teacher(firstName="Lucas",
+  lastName="Campelo",
+  age=35,
+  gender="Masculino",
+  interests="backEnd",
+  subject="Física");
+
+lucas.greeting();
