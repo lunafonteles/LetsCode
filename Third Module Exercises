@@ -1,4 +1,3 @@
-//quebrado, ajeitar
 class Person {
   constructor (firstName, lastName, age, gender, interests) {
     this.name=firstName+" "+lastName;
@@ -8,23 +7,20 @@ class Person {
     this.gender=gender;
     this.interests=interests; //array de strings
   }
-bio = () => {return this.name + "  is " + this.age +" years old. They like " + this.interests};
-greeting=() => {return "Hi, I am " + this.name};
+bio () {return this.name + "  is " + this.age +" years old. They like " + this.interests};
+greeting() {return "Hi, I am " + this.name};
 }
 
-class Teacher {
+class Teacher extends Person {
   constructor (subject){
+    super(firstName, lastName, age, gender, interests);
     this.subject=subject;
   }
-  super(firstName, lastName, age, gender, interests);
 
-greeting=() => {return "Hello, my name is " + this.lastName + ", and I teach " + subject};
-  
+  greeting() {return "Hello, my name is " + this.lastName + ", and I teach " + subject};
 }
-class Student {
-  
-  greeting=() => {return "Yo! I am " + this.firstName};
-
+class Student extends Person {
+  greeting() {return "Yo! I am " + this.firstName};
 }
 
 let luna = new Student(firstName="Luna",
