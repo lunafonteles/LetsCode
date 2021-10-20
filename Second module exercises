@@ -68,49 +68,50 @@ console.log(
 );
 
 //criar uma calculadora
-let operacao;
+operacao = 0;
     list = [];
+    result=0;
+
 
     function calculator(callBackFn) {
-        list.push({
-          operacao: operacao,
-          resultado: callBackFn,
-        });
         return callBackFn;
       }
-    
 
-    function operation(op, num, num2) {
+    function enter(op, num, num2) {
       if (op == "soma") {
-        operacao = num + " + " + num2;
-        return num + num2;
+        result = num + num2;
+        return operacao = num + " + " + num2;
       }
       if (op == "subtracao") {
-        operacao = num + " - " + num2;
-        return num - num2;
+        result = num - num2;
+        return operacao = num + " - " + num2;
       }
       if (op == "multiplicacao") {
-        operacao = num + " * " + num2;
-        return num * num2;
+        result = num * num2;
+        return operacao = num + " * " + num2;
       }
       if (op == "divisao") {
-        operacao = num + " / " + num2;
-        return num / num2;
+        result = num / num2;
+        return operacao = num + " / " + num2;
       }
     }
+    
+    function equals() {
+      list.push({
+        operacao: operacao,
+        resultado: result,
+      });
+      return result;
+   }
 
     const reset = () => {
       list = [];
     };
 
-    console.log(calculator(operation("soma", 5, 4)));
-
-    console.log(calculator(operation("subtracao", 5, 4)));
-
-    console.log(calculator(operation("multiplicacao", 5, 4)));
-
-    console.log(calculator(operation("divisao", 5, 4)));
-
-    console.log(list);
-    reset();
-    console.log(list);
+    console.log(calculator(enter("soma", 5, 4)));
+    console.log(calculator(equals()));
+    console.log(calculator(list));
+    console.log(calculator(enter("subtracao", 5, 4)));
+    console.log(calculator(equals()));
+    console.log(calculator(list));
+    console.log(calculator(reset()));
