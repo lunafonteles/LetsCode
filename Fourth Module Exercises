@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>User Register</h1>
+    <form>
+      <input type="text" /><button
+        className="createUser"
+        type="submit"
+        onclick="createUser()"
+      >
+        OK
+      </button>
+    </form>
+    <section>
+      <h2>Users List</h2>
+      <ul></ul>
+    </section>
+
+    <script>
+      const container = document.querySelector("ul");
+
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function (evt) {
+        evt.preventDefault();
+      });
+
+      function createUser() {
+        const li = document.createElement("li");
+        li.textContent = document.querySelector("input").value;
+        li.className = "User";
+        container.appendChild(li);
+        const btRemove = document.createElement("button");
+        btRemove.textContent = "Remove";
+        container.appendChild(btRemove);
+        btRemove.onclick = deleteUser();
+      }
+      function deleteUser() {
+        const teste = document.querySelector(li.value);
+        teste.container.removeChild(teste);
+      }
+    </script>
+  </body>
+</html>
