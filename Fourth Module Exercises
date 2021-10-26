@@ -10,40 +10,44 @@
     <h1>User Register</h1>
     <form>
       <input type="text" /><button
-        className="createUser"
+        class="createUser"
         type="submit"
         onclick="createUser()"
-      >
-        OK
+      >OK
       </button>
     </form>
+
     <section>
       <h2>Users List</h2>
-      <ul></ul>
+      <ul class="userList"></ul>
     </section>
 
     <script>
       const container = document.querySelector("ul");
-
+      const input = document.querySelector("input");
       const form = document.querySelector("form");
+
       form.addEventListener("submit", function (evt) {
         evt.preventDefault();
       });
 
       function createUser() {
         const li = document.createElement("li");
-        li.textContent = document.querySelector("input").value;
-        li.className = "User";
+        li.textContent = input.value;
+        li.class = "user";
         container.appendChild(li);
+
         const btRemove = document.createElement("button");
-        btRemove.textContent = "Remove";
-        container.appendChild(btRemove);
-        btRemove.onclick = deleteUser();
+        btRemove.textContent = "Remove user";
+        li.appendChild(btRemove);
+
+        form.reset();
+
       }
-      function deleteUser() {
-        const teste = document.querySelector(li.value);
-        teste.container.removeChild(teste);
-      }
+
+      container.addEventListener("click", function (evt) {
+        container.removeChild(evt.target.parentElement);
+      });
     </script>
   </body>
 </html>
