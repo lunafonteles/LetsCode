@@ -1,3 +1,4 @@
+<!--Lista de Usuarios --> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,6 +49,119 @@
       container.addEventListener("click", function (evt) {
         container.removeChild(evt.target.parentElement);
       });
+    </script>
+  </body>
+</html>
+
+<!--Calculadora --> 
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <title>Calculadora</title>
+    <form>
+      <input type="number" placeholder="Informe um numero" />
+      <button onclick="enter()">Enter</button><br />
+      <input type="radio" name="Operação" value="soma" />
+      <label>Soma</label><br />
+      <input type="radio" name="Operação" value="subtracao" />
+      <label>Subtração</label><br />
+      <input type="radio" name="Operação" value="multiplicacao" />
+      <label>Multiplicação</label><br />
+      <input type="radio" name="Operação" value="divisao" />
+      <label>Divisão</label><br />
+      <button onclick="equals()">Equals</button>
+    </form>
+    <ul name="result">
+      Resultado
+      <li name="resultValue"></li>
+    </ul>
+    <ul name="history">
+      <button onclick="history()">Hisórico de operaçoes</button
+      ><button name="reset" onclick="reset()">Resetar histórico</button>
+      <li name="historyItem"></li>
+    </ul>
+    <script>
+      operacao = 0;
+      list = [];
+      result = 0;
+      equacao = [];
+
+      const input = document.querySelector("input");
+      const results = document.querySelector('ul[name="result"]');
+      const resultValue = document.querySelector('li[name="resultValue"]');
+      var historys = document.querySelector('ul[name="history"]');
+      var item = document.querySelector('li[name="historyItem"]');
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function (evt) {
+        evt.preventDefault();
+      });
+
+      function enter() {
+        if (input.value != "") {
+          equacao = [...equacao, +input.value];
+          input.value = null;
+          console.log(equacao);
+        }
+      }
+
+      function equals() {
+        var checkBoxChecked = document.querySelector(
+          'input[name="Operação"]:checked'
+        );
+        var op;
+
+        if (checkBoxChecked.value == "soma") {
+          console.log(checkBoxChecked.value);
+          op = " + ";
+          result = equacao.reduce((acc, current) => {
+            return acc + current;
+          }, 0);
+        }
+        if (checkBoxChecked.value == "subtracao") {
+          result = equacao.reduce((acc, current) => {
+            return acc - current;
+          }, equacao[0] * 2);
+          op = " - ";
+        }
+        if (checkBoxChecked.value == "multiplicacao") {
+          result = equacao.reduce((acc, current) => {
+            return acc * current;
+          }, 1);
+          op = " * ";
+        }
+        if (checkBoxChecked.value == "divisao") {
+          result = equacao.reduce((acc, current) => {
+            return acc / current;
+          }, equacao[0] * equacao[0]);
+          op = " / ";
+        }
+        list = [...list, { operacao: equacao.join(op), resultado: result }];
+        console.log(list);
+        equacao = [];
+
+        resultValue.textContent = result;
+        results.appendChild(resultValue);
+      }
+
+      const reset = () => {
+        list = [];
+        item.textContent = "";
+      };
+
+      function history() {
+        item.textContent = list.reduce((acc, current) => {
+          return acc + current.operacao + "=" + current.resultado + "\n";
+        }, 0);
+        historys.appendChild(item);
+      }
     </script>
   </body>
 </html>
