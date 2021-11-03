@@ -165,3 +165,62 @@
     </script>
   </body>
 </html>
+
+<!--Promises --> 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <h1>Desafio Promises - Luna Fonteles</h1>
+      <button onclick="list()">Gerar Lista</button>
+      <ul>
+        <li></li>
+      </ul>
+    </form>
+
+    <script>
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function (evt) {
+        evt.preventDefault();
+      });
+
+      var aGenerator = () => {
+        var array = [];
+        for (i = 0; i < Math.random() * 10; i++) {
+          array.push(Math.round(Math.random() * 10));
+        }
+        return array;
+      };
+
+      var lGenerator = (arrayResult) => {
+        const ul = document.querySelector("ul");
+        const li = document.querySelector("li");
+        li.textContent = arrayResult;
+        ul.appendChild(li);
+      };
+
+      function list() {
+        const promise1 = new Promise((resolve) => {
+          return resolve(aGenerator());
+        });
+        const promise2 = new Promise((resolve) => {
+          resolve(aGenerator());
+        });
+        const promise3 = new Promise((resolve) => {
+          resolve(aGenerator());
+        });
+
+        return Promise.allSettled([promise1, promise2, promise3]).then(
+          (value) => lGenerator(value)
+        );
+      }
+    </script>
+  </body>
+</html>
+
