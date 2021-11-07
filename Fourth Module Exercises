@@ -181,6 +181,8 @@
       <button onclick="list()">Gerar Lista</button>
       <ul>
         <li></li>
+        <li></li>
+        <li></li>
       </ul>
     </form>
 
@@ -217,10 +219,88 @@
         });
 
         return Promise.allSettled([promise1, promise2, promise3]).then(
-          (value) => lGenerator(value)
+          (results) => {
+            results.forEach((item) => {
+              lGenerator(JSON.stringify(item));
+            });
+          }
         );
       }
     </script>
   </body>
 </html>
 
+<!--Drag Race --> 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <h1>Desafio drag race - Luna Fonteles</h1>
+      <input placeholder="Nome do competidor" />
+      <button name="start" onclick="startTimer()">Start</button>
+      <button name="stop" onclick="stopTimer()">Stop</button>
+      <button name="history" onclick="history">History</button>
+      <ul>
+        <li></li>
+      </ul>
+    </form>
+    <script>
+      var player;
+      var time = 0;
+      var milisegundos = 0;
+      var segundos = 0;
+      var minutos = 0;
+      var horas = 0;
+      var interval;
+      var input = document.querySelector("input");
+      const ul = document.querySelector("ul");
+      const li = document.querySelector("li");
+      var history = [];
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function (evt) {
+        evt.preventDefault();
+      });
+
+      function startTimer() {
+        player = input.value;
+        input = "";
+
+        interval = setInterval(function () {
+          console.log(time);
+          milisegundos++;
+          if (milisegundos == 1000) {
+            milisegundos = 0;
+            segundos++;
+          }
+          if (segundos == 60) {
+            segundos = 0;
+            minutos++;
+          }
+          if (minutos == 60) {
+            minutos = 0;
+            horas++;
+          }
+          time = horas + ":" + minutos + ":" + segundos + ":" + milisegundos;
+          li.textContent = time;
+          ul.appendChild(li);
+        }, 1);
+
+        return time;
+      }
+
+      function stopTimer() {
+        clearInterval(interval);
+        sessionStorage.setItem(player, time);
+        li.textContent =
+          "O(a) competidor(a) " + player + " terminou com o tempo de: " + time;
+        ul.appendChild(li);
+      }
+    </script>
+  </body>
+</html>
